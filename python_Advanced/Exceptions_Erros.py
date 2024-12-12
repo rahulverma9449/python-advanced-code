@@ -18,15 +18,38 @@
 # except:
 #     print("ssssssssss")
 
+# try:
+#     a = 5/0
+#     b = a + 5
+# except ZeroDivisionError as e: 
+#     print(e)
+# except TypeError as e: 
+#     print(e)
+# else: 
+#     print('everything is fine')
+# finally: 
+#     print('cleaning up...')
+
+x = 0
+class value(Exception):
+    pass
+
+class valuetolow(Exception):
+    def __init__(self, message, value):
+        self.message = message
+        self.value = value
+
+def test_value(x):
+    if x > 100:
+        raise value('value is too high')
+    if x < 5:
+        raise valuetolow("value is too small",x)
+    
+
 try:
-    a = 5/0
-    b = a + 5
-except ZeroDivisionError as e: 
+    test_value(1)
+except value as e:
     print(e)
-except TypeError as e: 
-    print(e)
-else: 
-    print('everything is fine')
-finally: 
-    print('cleaning up...')
+except valuetolow as e:
+    print(e.message, e.value)
 
